@@ -78,7 +78,8 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.15;letter-spacing
   mask-image:linear-gradient(to bottom,#000 0,#000 76%,transparent 98%),linear-gradient(to right,transparent 0,#000 8%,#000 92%,transparent 100%);
   mask-composite:intersect}
 .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(0,0,0,.62) 0%,rgba(0,0,0,.18) 34%,rgba(0,0,0,0) 55%)}
-.hero__inner{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;padding:96px var(--pad) 28px;max-width:1400px;margin:0 auto;width:100%}
+.hero__inner{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;padding:96px var(--pad) 28px;max-width:1400px;margin:0 auto;width:100%;pointer-events:none}
+.hero__inner a{pointer-events:auto}
 .hero__meta{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;align-items:start}
 .hero__meta .label{margin-bottom:10px}
 .hero__meta p{font-size:.85rem;line-height:1.55;color:var(--w70);max-width:240px}
@@ -658,23 +659,20 @@ if(!('IntersectionObserver' in window) || location.search.indexOf('all')>-1){
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 }
 
-// hero-видео: на десктопе играет только под курсором (увели мышь — стоп-кадр),
-// на тачах — обычный автоплей; плюс параллакс за курсором
+// hero-видео: на десктопе играет и «дышит» параллаксом, только пока курсор
+// на самом видео; увели мышь — стоп-кадр в текущей позе (как на ai/lichnaya).
+// На тачах — обычный автоплей.
 (function(){
   const hero = document.querySelector('.hero');
   const vid = hero && hero.querySelector('video');
   if(!vid) return;
   const fine = window.matchMedia('(pointer:fine)').matches;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(fine){
-    vid.pause();
-    if(!reduced){
-      hero.addEventListener('mouseenter', function(){ const p = vid.play(); if(p && p.catch) p.catch(function(){}); });
-      hero.addEventListener('mouseleave', function(){ vid.pause(); });
-    }
-  }
   if(!fine) return;
+  vid.pause();
   if(reduced) return;
+  vid.addEventListener('mouseenter', function(){ const p = vid.play(); if(p && p.catch) p.catch(function(){}); });
+  vid.addEventListener('mouseleave', function(){ vid.pause(); });
   const AMP_X = 26, AMP_Y = 18, EASE = 0.07;
   let tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
   function tick(){
@@ -685,14 +683,13 @@ if(!('IntersectionObserver' in window) || location.search.indexOf('all')>-1){
     else{ raf = null; }
   }
   function kick(){ if(!raf) raf = requestAnimationFrame(tick); }
-  hero.addEventListener('mousemove', function(e){
-    const r = hero.getBoundingClientRect();
+  vid.addEventListener('mousemove', function(e){
+    const r = vid.getBoundingClientRect();
     // видео уходит в противоположную от курсора сторону — эффект глубины
     tx = -((e.clientX - r.left) / r.width - .5) * AMP_X * 2;
     ty = -((e.clientY - r.top) / r.height - .5) * AMP_Y * 2;
     kick();
   });
-  hero.addEventListener('mouseleave', function(){ tx = 0; ty = 0; kick(); });
 })();
 
 // Яндекс.Метрика — только на боевом домене, чтобы не засорять статистику локальными просмотрами
