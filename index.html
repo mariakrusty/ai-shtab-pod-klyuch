@@ -467,19 +467,19 @@ footer a:hover{color:var(--muted)}
   .nav__inner{height:64px}
   :root{--nav-h:64px}
   .nav__logo{font-size:13px}
-  /* мобильный хиро: только суть, контент внизу, лицо в центре */
-  .hero{min-height:100svh}
+  /* мобильный хиро: три зоны — заголовок / лицо / цена+CTA. Текст никогда не лежит на лице */
+  .hero{min-height:100svh;height:100svh;max-height:none}
   @supports (min-height:100svh){.hero{min-height:max(100svh,720px)}}
-  .hero video{height:74svh}
   .hero__meta,.hero__spacer,.hero__bottom,.hero__strip{display:none}
-  .hero__inner{padding:88px 20px 26px;justify-content:flex-end}
-  .hero::after{background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.42) 30%,rgba(0,0,0,0) 58%)}
-  .hero-m{display:flex;flex-direction:column;align-items:stretch}
-  .hero-m__kick{font-family:var(--font-mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--w70);margin:0 0 12px}
-  .hero-m__title{font-family:var(--font-display);font-size:clamp(31px,8.5vw,37px);font-weight:800;line-height:.98;letter-spacing:-.02em;text-transform:uppercase;color:var(--white);margin:0}
-  .hero-m__lead{font-size:16px;line-height:1.45;color:var(--w90);margin:16px 0 0;font-family:var(--font-mono)}
-  .hero-m__facts{font-family:var(--font-mono);font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--w70);margin:14px 0 0}
-  .hero-m__cta{width:100%;justify-content:center;min-height:54px;margin-top:18px}
+  .hero::after{display:none}
+  .hero .vwrap{align-items:center}
+  .hero video{height:56svh;margin-top:7svh}
+  .hero__inner{padding:0 20px 24px;justify-content:space-between}
+  .hero-m{display:flex;flex-direction:column;justify-content:space-between;flex:1;min-height:0}
+  .hero-m__title{font-family:var(--font-display);font-size:clamp(29px,8vw,32px);font-weight:800;line-height:.98;letter-spacing:-.02em;text-transform:uppercase;color:var(--white);margin:96px 0 0;max-width:350px}
+  .hero-m__bottom{display:flex;flex-direction:column;align-items:stretch}
+  .hero-m__price{font-family:var(--font-mono);font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--white);margin:0 0 17px;text-align:center}
+  .hero-m__cta{width:100%;justify-content:center;min-height:53px;font-size:13px}
   .dive__track{height:260vh}
   .dive-h{font-size:clamp(30px,8.4vw,34px);line-height:1}
   .dive-h2b{font-size:clamp(20px,5.6vw,26px)}
@@ -584,11 +584,11 @@ footer a:hover{color:var(--muted)}
     </div>
 
     <div class="hero-m">
-      <p class="hero-m__kick">[ индивидуальное внедрение ]</p>
       <h2 class="hero-m__title">AI-штаб цветочного магазина под&nbsp;ключ</h2>
-      <p class="hero-m__lead">Мария Андреева подключает данные и&nbsp;передаёт готовую систему управления.</p>
-      <p class="hero-m__facts">7–15 рабочих дней · от&nbsp;500&nbsp;000&nbsp;₽</p>
-      <a class="btn btn--neon hero-m__cta" href="https://t.me/AIbyAndreeva_bot" target="_blank" rel="noopener">Оставить заявку на диагностику</a>
+      <div class="hero-m__bottom">
+        <p class="hero-m__price">от 500 000 ₽</p>
+        <a class="btn btn--neon hero-m__cta" href="https://t.me/AIbyAndreeva_bot" target="_blank" rel="noopener">Записаться на диагностику</a>
+      </div>
     </div>
 
     <div class="hero__strip">
