@@ -496,43 +496,94 @@ footer a:hover{color:var(--muted)}
 .funk__method{max-width:1320px;margin:10px auto 0;width:100%;font-family:var(--font-mono);font-size:12.5px;line-height:1.5;color:var(--dim)}
 .funk-m{display:none}
 
-/* мобильный / статичный канал */
-@media (max-width: 767px), (prefers-reduced-motion: reduce){
+/* мобильный системный сканер */
+@media (max-width: 767px){
   .funk__track{display:none}
-  .funk-m{display:block;padding:clamp(64px,10vw,96px) var(--pad);max-width:620px;margin:0 auto}
-  .funk-m__chan{position:relative;margin-top:26px;padding-left:22px}
-  .funk-m__chan::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:1px;background:linear-gradient(var(--line),rgba(207,201,234,.5))}
-  .fmstep{position:relative;display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px solid var(--line-soft)}
-  .fmstep::before{content:"";position:absolute;left:-21px;top:50%;width:7px;height:7px;border-radius:50%;transform:translateY(-50%);background:var(--violet-signal);box-shadow:0 0 8px var(--violet-signal-glow);opacity:.4;transition:opacity .4s}
-  .fmstep{transition:opacity .5s}
-  .fmstep.dim{opacity:.55}
-  .fmstep b{font-family:var(--font-mono);font-weight:400;font-size:16px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink)}
-  .fmstep em{font-style:normal;font-family:var(--font-mono);font-size:16px;color:var(--pearl-2);font-variant-numeric:tabular-nums;white-space:nowrap}
-  .fmtotal{margin-top:26px}
-  .fmtotal b{display:block;font-family:var(--font-display);font-weight:800;font-size:clamp(28px,8vw,36px);line-height:.95;letter-spacing:-.03em;color:var(--ink);font-variant-numeric:tabular-nums}
-  .fmtotal span{display:block;margin-top:10px;font-family:var(--font-mono);font-size:14px;line-height:1.5;color:var(--muted)}
-  .fmcore{margin-top:40px;text-align:center}
-  .fmcore__ring{width:118px;height:118px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;font-size:16px;color:var(--ink);border:1px solid rgba(183,166,255,.4);background:radial-gradient(circle, rgba(183,166,255,.22) 0%, transparent 70%);box-shadow:0 0 30px var(--violet-signal-glow)}
-  .fmcore p{margin-top:14px;font-family:var(--font-mono);font-size:14px;line-height:1.6;color:var(--muted)}
-  .fmalerts{margin-top:26px;display:grid;gap:12px}
-  .fmalerts div{display:flex;flex-direction:column;gap:3px;border-left:2px solid rgba(183,166,255,.5);padding-left:12px}
-  .fmalerts b{font-family:var(--font-mono);font-weight:400;font-size:13px;letter-spacing:.1em;color:var(--violet-signal)}
-  .fmalerts span{font-family:var(--font-mono);font-size:15px;color:var(--ink)}
-  .fmfinal{margin-top:44px}
-  .fmfinal h3{font-family:var(--font-display);font-size:clamp(22px,6.4vw,27px);font-weight:800;line-height:1.05;letter-spacing:-.02em;text-transform:uppercase;color:var(--ink)}
-  .fmfinal h3 span{color:var(--pearl);text-shadow:0 0 20px var(--violet-signal-glow)}
-  .fmfinal p{margin-top:14px;font-family:var(--font-mono);font-size:16px;line-height:1.55;color:var(--muted)}
-  .fm-accent{font-family:var(--font-display) !important;font-weight:700;text-transform:uppercase;font-size:15px !important;line-height:1.4 !important;color:var(--ink) !important}
-  .fmfinal small{display:block;margin-top:12px;font-family:var(--font-mono);font-size:14px;line-height:1.55;color:var(--dim)}
-  /* появление */
-  [data-fm]{opacity:0;transform:translateY(12px);transition:opacity .6s var(--ease-heavy),transform .7s var(--ease-heavy)}
-  [data-fm].on{opacity:1;transform:none}
-  [data-fm].on.fmstep::before{opacity:1}
-  @media (prefers-reduced-motion: reduce){
-    [data-fm]{opacity:1;transform:none;transition:none}
-  }
+  .funk-m{display:block}
+  .fm__track{height:260vh}
+  .fm__pin{position:sticky;top:0;height:100dvh;min-height:100svh;overflow:hidden;display:flex;flex-direction:column;padding:calc(var(--nav-h) + 14px) 20px 16px}
+  .fm__mode{display:flex;align-items:baseline;gap:14px;margin-top:4px;font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+  .fm__m1{color:var(--ink);transition:opacity .5s}
+  .fm__m2{color:var(--pearl-2);opacity:0;transition:opacity .5s}
+  .funk-m.phase2 .fm__m1{opacity:.3}
+  .funk-m.phase2 .fm__m2{opacity:1}
+  .fm__mode em{margin-left:auto;font-style:normal;color:var(--faint);font-variant-numeric:tabular-nums}
+  .fm__stage{position:relative;width:min(82vw,330px);aspect-ratio:1/1;margin:12px auto 0;flex-shrink:0;
+    background-image:linear-gradient(rgba(246,245,248,.05) 1px, transparent 1px),linear-gradient(90deg, rgba(246,245,248,.05) 1px, transparent 1px);
+    background-size:44px 44px}
+  .fm__orbit{position:absolute;inset:0;width:100%;height:100%}
+  .fm__orbit path{stroke:rgba(246,245,248,.3);stroke-width:.5;fill:none;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .6s var(--ease-heavy),stroke .4s}
+  .fm__orbit path.show{stroke-dashoffset:0}
+  .fm__orbit path.hot{stroke:rgba(207,201,234,.7)}
+  .fm__spark{fill:#fff;filter:drop-shadow(0 0 4px var(--violet-signal-glow))}
+  .fdot{position:absolute;width:9px;height:9px;border-radius:50%;transform:translate(-50%,-50%);background:var(--violet-signal);box-shadow:0 0 10px var(--violet-signal-glow);opacity:0;transition:opacity .5s,box-shadow .5s}
+  .fdot.on{opacity:.85}
+  .funk-m.all .fdot{opacity:1;box-shadow:0 0 16px var(--violet-signal)}
+  .funk-m.all .fm__core b{font-size:clamp(23px,6.6vw,29px)}
+  .fdot i{position:absolute;font-style:normal;font-family:var(--font-mono);font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);white-space:nowrap;opacity:0;transition:opacity .5s}
+  .funk-m.phase2 .fdot i{opacity:1}
+  .fdot[data-fd="0"] i{left:50%;top:-22px;transform:translateX(-50%)}
+  .fdot[data-fd="1"] i{left:14px;top:-4px}
+  .fdot[data-fd="2"] i{left:14px;top:-4px}
+  .fdot[data-fd="3"] i{left:50%;bottom:-22px;transform:translateX(-50%)}
+  .fdot[data-fd="4"] i{right:14px;top:-4px}
+  .fdot[data-fd="5"] i{right:14px;top:-4px}
+  .fm__core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:72%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px}
+  .fm__core::before{content:"";position:absolute;inset:-8%;border-radius:50%;background:radial-gradient(circle, rgba(183,166,255,.14) 0%, transparent 66%);pointer-events:none}
+  .fm__radar{position:absolute;left:50%;top:50%;width:70px;height:70px;border-radius:50%;border:1px solid rgba(183,166,255,.55);transform:translate(-50%,-50%) scale(.4);opacity:0;pointer-events:none}
+  .fm__radar.ping{animation:fmping 1.3s var(--ease-heavy) 1}
+  @keyframes fmping{0%{transform:translate(-50%,-50%) scale(.35);opacity:.9}100%{transform:translate(-50%,-50%) scale(3.4);opacity:0}}
+  .fm__c1,.fm__c2{font-family:var(--font-mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+  .fm__c2{display:none;color:var(--pearl);text-shadow:0 0 16px var(--violet-signal-glow)}
+  .funk-m.phase2 .fm__c1{display:none}
+  .funk-m.phase2 .fm__c2{display:block}
+  .fm__core b{font-family:var(--font-display);font-weight:800;font-size:clamp(30px,8.6vw,38px);line-height:.95;letter-spacing:-.03em;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap;transition:opacity .5s}
+  .funk-m.phase2 .fm__core b{display:none}
+  .fm__core small{font-family:var(--font-mono);font-size:12px;letter-spacing:.05em;color:var(--dim);line-height:1.45;max-width:220px}
+  .fm__role{margin:18px auto 0;text-align:center;display:flex;flex-direction:column;gap:6px;opacity:0;transform:translateY(12px);transition:opacity .45s var(--ease-heavy),transform .55s var(--ease-heavy);min-height:96px}
+  .fm__role.on{opacity:1;transform:none}
+  .fm__role u{text-decoration:none;font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--violet-signal)}
+  .fm__role b{font-family:var(--font-display);font-weight:800;font-size:clamp(24px,7.4vw,30px);line-height:1;letter-spacing:-.02em;text-transform:uppercase;color:var(--ink)}
+  .fm__role em{font-style:normal;font-family:var(--font-mono);font-size:clamp(20px,5.8vw,24px);color:var(--pearl-2);font-variant-numeric:tabular-nums}
+  .fm__alerts{margin:6px auto 0;display:none;flex-direction:column;gap:10px;width:100%;max-width:340px}
+  .funk-m.phase2 .fm__alerts{display:flex}
+  .funk-m.final .fm__alerts{display:none}
+  .fm__alerts div{position:relative;padding-left:16px;font-family:var(--font-mono);font-size:16px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);opacity:0;transform:translateY(8px);transition:opacity .45s,transform .5s}
+  .fm__alerts div::before{content:"";position:absolute;left:0;top:50%;width:6px;height:6px;border-radius:50%;transform:translateY(-50%);background:var(--violet-signal);box-shadow:0 0 8px var(--violet-signal-glow)}
+  .fm__alerts div.on{opacity:.55;transform:none}
+  .fm__alerts div.on.hot{opacity:1;text-shadow:0 0 14px var(--violet-signal-glow)}
+  .fm__final{position:absolute;left:20px;right:20px;top:50%;transform:translateY(-44%);text-align:center;opacity:0;transition:opacity .6s var(--ease-heavy),transform .7s var(--ease-heavy);pointer-events:none}
+  .fm__final::before{content:"";position:absolute;inset:-14% -8%;z-index:-1;background:radial-gradient(ellipse, rgba(2,2,3,.94) 0%, rgba(2,2,3,.7) 60%, transparent 82%)}
+  .funk-m.final .fm__final{opacity:1;transform:translateY(-50%)}
+  .funk-m.final .fm__stage{opacity:.14}
+  .funk-m.final .fm__role{opacity:0 !important}
+  .fm__final h3{font-family:var(--font-display);font-size:clamp(24px,7vw,28px);font-weight:800;line-height:1.04;letter-spacing:-.02em;text-transform:uppercase;color:var(--ink)}
+  .fm__final h3 span{color:var(--pearl);text-shadow:0 0 18px var(--violet-signal-glow)}
+  .fm__final p{margin-top:12px;font-family:var(--font-mono);font-size:16px;line-height:1.5;color:var(--muted)}
+  .fm__accent{font-family:var(--font-display) !important;font-weight:700;text-transform:uppercase;font-size:15px !important;line-height:1.4 !important;color:var(--ink) !important}
+  .fm__final small{display:block;margin-top:12px;font-family:var(--font-mono);font-size:14px;line-height:1.5;color:var(--dim)}
+  .fm__method{margin-top:auto;font-family:var(--font-mono);font-size:14px;line-height:1.45;color:var(--dim)}
 }
 
+/* reduced motion: статичная системная инфографика (мобайл и десктоп) */
+@media (prefers-reduced-motion: reduce){
+  .funk__track{display:none}
+  .funk-m{display:block}
+  .fm__track{height:auto}
+  .fm__pin{position:static;height:auto;min-height:0;overflow:visible;display:block;padding:clamp(56px,9vw,90px) 20px;max-width:560px;margin:0 auto}
+  .fm__stage{position:relative;width:min(82vw,330px);aspect-ratio:1/1;margin:20px auto 0}
+  .fm__orbit path{stroke:rgba(246,245,248,.3);stroke-dashoffset:0 !important;stroke-dasharray:none}
+  .fdot,.fdot i{opacity:1 !important}
+  .fm__radar{display:none}
+  .fm__core b{display:block !important}
+  .fm__role{display:none}
+  .fm__alerts{display:flex !important;flex-direction:column;gap:10px;margin-top:24px}
+  .fm__alerts div{opacity:1 !important;transform:none !important}
+  .fm__final{position:static;transform:none;opacity:1;margin-top:32px;pointer-events:auto}
+  .fm__final::before{display:none}
+  .funk-m.final .fm__stage{opacity:1}
+  .fm__mode em{display:none}
+}
 /* режим съёмки для проверки вёрстки: ?flat */
 .flat .hero{min-height:780px;height:780px}
 .flat .hero__spacer{min-height:40px}
@@ -549,8 +600,16 @@ footer a:hover{color:var(--muted)}
 .flat .steps__fill{height:100% !important}
 .flat .chart .dot{opacity:1 !important}
 .flat .funk__track{display:none}
-.flat .funk-m{display:block;padding:56px var(--pad);max-width:620px;margin:0 auto}
-.flat .funk-m [data-fm]{opacity:1 !important;transform:none !important}
+.flat .funk-m{display:block}
+.flat .fm__track{height:auto}
+.flat .fm__pin{position:static;height:auto;min-height:0;overflow:visible;max-width:560px;margin:0 auto;padding:56px 20px}
+.flat .fm__orbit path{stroke-dashoffset:0}
+.flat .fdot,.flat .fdot i{opacity:1 !important}
+.flat .fm__role{opacity:1;transform:none}
+.flat .fm__alerts{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.flat .fm__alerts div{opacity:1 !important;transform:none}
+.flat .fm__final{position:static;transform:none;opacity:1;margin-top:28px}
+.flat .fm__final::before{display:none}
 .flat{scroll-behavior:auto !important}
 .qa-snap{scroll-behavior:auto !important}
 .qa-frame .hero,.qa-frame .nav{display:none}
@@ -765,37 +824,65 @@ footer a:hover{color:var(--muted)}
     </div>
   </div>
 
-  <!-- мобильный / статичный вертикальный канал -->
+  <!-- мобильный системный сканер: sticky-сцена -->
   <div class="funk-m">
-    <p class="eyebrow">Анализ управленческих функций</p>
-    <div class="funk-m__chan">
-      <div class="fmstep" data-fm><b>01 · Закупки</b><em>+170 000 ₽</em></div>
-      <div class="fmstep" data-fm><b>02 · Финансы</b><em>+200 000 ₽</em></div>
-      <div class="fmstep" data-fm><b>03 · Продажи</b><em>+250 000 ₽</em></div>
-      <div class="fmstep" data-fm><b>04 · Команда</b><em>+100 000 ₽</em></div>
-      <div class="fmstep" data-fm><b>05 · Операционка</b><em>+150 000 ₽</em></div>
-      <div class="fmstep" data-fm><b>06 · Аналитика</b><em>+180 000 ₽</em></div>
-    </div>
-    <div class="fmtotal" data-fm>
-      <b>≈ 1 050 000 ₽ / мес.</b>
-      <span>Стоимость сопоставимых управленческих функций</span>
-    </div>
-    <div class="fmcore" data-fm>
-      <div class="fmcore__ring">AI-ШТАБ</div>
-      <p>Продажи · Остатки · Списания · Деньги · Команда · Процессы</p>
-    </div>
-    <div class="fmalerts" data-fm>
-      <div><b>Потери денег</b><span>обнаружены отклонения, требующие проверки</span></div>
-      <div><b>Рост списаний</b><span>остатки и списания выходят за обычные значения</span></div>
-      <div><b>План не выполняется</b><span>продажи отстают от установленного плана</span></div>
-      <div><b>Требуется внимание</b><span>в работе команды или процесса найдено отклонение</span></div>
-    </div>
-    <div class="fmfinal" data-fm>
-      <h3>Картина бизнеса.<br><span>Как есть.</span></h3>
-      <p>AI-помощники не&nbsp;приукрашивают результаты и&nbsp;не&nbsp;ищут оправданий. Они показывают отклонения, найденные в&nbsp;данных вашего бизнеса.</p>
-      <p class="fm-accent">Без догадок. Без приукрашивания. Только факты из&nbsp;ваших данных.</p>
-      <small>Точность выводов зависит от&nbsp;полноты и&nbsp;корректности данных в&nbsp;учётной системе.</small>
-      <small class="fm-method">Ориентир рассчитан по&nbsp;актуальным предложениям работодателей в&nbsp;Москве. Указаны начисленные зарплаты до&nbsp;вычета налогов, без страховых взносов и&nbsp;других расходов работодателя.</small>
+    <div class="fm__track">
+      <div class="fm__pin">
+        <p class="eyebrow">Анализ управленческих функций</p>
+        <div class="fm__mode">
+          <span class="fm__m1">Стоимость команды</span>
+          <span class="fm__m2">AI-штаб собственника</span>
+          <em data-fmstage>01 / 06</em>
+        </div>
+
+        <div class="fm__stage">
+          <svg class="fm__orbit" viewBox="0 0 100 100" aria-hidden="true">
+            <path data-fml="0" d="M 50 8 L 50 50"/>
+            <path data-fml="1" d="M 88 29 L 50 50"/>
+            <path data-fml="2" d="M 88 71 L 50 50"/>
+            <path data-fml="3" d="M 50 92 L 50 50"/>
+            <path data-fml="4" d="M 12 71 L 50 50"/>
+            <path data-fml="5" d="M 12 29 L 50 50"/>
+            <circle class="fm__spark" data-fmspark r="1.8" cx="-10" cy="-10"/>
+          </svg>
+          <span class="fdot" data-fd="0" style="left:50%;top:8%"><i>Продажи</i></span>
+          <span class="fdot" data-fd="1" style="left:88%;top:29%"><i>Остатки</i></span>
+          <span class="fdot" data-fd="2" style="left:88%;top:71%"><i>Списания</i></span>
+          <span class="fdot" data-fd="3" style="left:50%;top:92%"><i>Деньги</i></span>
+          <span class="fdot" data-fd="4" style="left:12%;top:71%"><i>Команда</i></span>
+          <span class="fdot" data-fd="5" style="left:12%;top:29%"><i>Процессы</i></span>
+
+          <div class="fm__core">
+            <span class="fm__radar" data-fmradar aria-hidden="true"></span>
+            <span class="fm__c1" data-fmc1>Поиск функций</span>
+            <span class="fm__c2">AI-штаб</span>
+            <b data-fmsum>0 ₽</b>
+            <small data-fmcap>общий счётчик</small>
+          </div>
+        </div>
+
+        <div class="fm__role" data-fmrolebox>
+          <u>функция обнаружена</u>
+          <b data-fmrole>Закупки</b>
+          <em data-fmprice>170 000 ₽ / мес.</em>
+        </div>
+
+        <div class="fm__alerts">
+          <div data-fma="0">Потери денег</div>
+          <div data-fma="1">Рост списаний</div>
+          <div data-fma="2">План не выполняется</div>
+          <div data-fma="3">Требуется внимание</div>
+        </div>
+
+        <div class="fm__final">
+          <h3>Картина бизнеса.<br><span>Как есть.</span></h3>
+          <p>AI-помощники не&nbsp;приукрашивают результаты. Они показывают отклонения, найденные в&nbsp;данных вашего бизнеса.</p>
+          <p class="fm__accent">Без догадок. Без приукрашивания.<br>Только факты из&nbsp;ваших данных.</p>
+          <small>Точность выводов зависит от&nbsp;полноты и&nbsp;корректности данных в&nbsp;учётной системе.</small>
+        </div>
+
+        <p class="fm__method">Ориентир рассчитан по&nbsp;актуальным предложениям работодателей в&nbsp;Москве. Указаны начисленные зарплаты до&nbsp;вычета налогов, без страховых взносов и&nbsp;других расходов работодателя.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1412,32 +1499,129 @@ document.addEventListener('keydown', function(e){
   var mq = window.matchMedia('(min-width: 768px)');
   var VALUES = [170000, 200000, 250000, 100000, 150000, 180000];
 
-  // мобильный/статичный канал — появление по одному разу
-  var fmEls = Array.prototype.slice.call(funk.querySelectorAll('[data-fm]'));
-  if(QA_FLAT || reduced || !('IntersectionObserver' in window)){
-    fmEls.forEach(function(el){ el.classList.add('on'); });
-  } else {
-    var steps = Array.prototype.slice.call(funk.querySelectorAll('.fmstep'));
-    var fio = new IntersectionObserver(function(es){
-      es.forEach(function(e){
-        if(!e.isIntersecting) return;
-        e.target.classList.add('on'); fio.unobserve(e.target);
-        var idx = steps.indexOf(e.target);
-        if(idx > 0) steps.slice(0, idx).forEach(function(st){ st.classList.add('dim'); });
-        if(e.target.classList.contains('fmtotal')){
-          var bEl = e.target.querySelector('b');
-          var t0 = null, TOTAL = 1050000;
-          (function count(now){
-            if(t0 === null){ t0 = now; }
-            var k = Math.min(1, (now - t0)/1100);
-            bEl.textContent = '\u2248 ' + Math.round(TOTAL * k).toLocaleString('ru-RU') + '\u00a0\u20bd / мес.';
-            if(k < 1) requestAnimationFrame(count);
-          })(performance.now());
+  // ── мобильный сканер: sticky-сцена с одиночными событиями обнаружения ──
+  var ROLES = ['Закупки','Финансы','Продажи','Команда','Операционка','Аналитика'];
+  (function(){
+    if(mq.matches || reduced || QA_FLAT) return;
+    var pin = funk.querySelector('.fm__pin');
+    if(!pin) return;
+    var mroot = funk.querySelector('.funk-m');
+    var mtrack = funk.querySelector('.fm__track');
+    var stageEl = funk.querySelector('[data-fmstage]');
+    var sumM = funk.querySelector('[data-fmsum]');
+    var capM = funk.querySelector('[data-fmcap]');
+    var c1 = funk.querySelector('[data-fmc1]');
+    var roleBox = funk.querySelector('[data-fmrolebox]');
+    var roleName = funk.querySelector('[data-fmrole]');
+    var rolePrice = funk.querySelector('[data-fmprice]');
+    var dots = Array.prototype.slice.call(funk.querySelectorAll('.fdot'));
+    var lines = Array.prototype.slice.call(funk.querySelectorAll('[data-fml]'));
+    var sparkM = funk.querySelector('[data-fmspark]');
+    var radar = funk.querySelector('[data-fmradar]');
+    var malerts = Array.prototype.slice.call(funk.querySelectorAll('[data-fma]'));
+    var mShown = -1, mStage = -1, mSparked = [], lastAlert = -1;
+
+    function sparkM_along(path, ms){
+      var len = path.getTotalLength(); var t0 = null;
+      function frame(now){
+        if(t0===null) t0 = now;
+        var k = Math.min(1,(now-t0)/ms);
+        var pt = path.getPointAtLength(len * k);
+        sparkM.setAttribute('cx', pt.x); sparkM.setAttribute('cy', pt.y);
+        if(k<1) requestAnimationFrame(frame);
+        else { sparkM.setAttribute('cx',-10); sparkM.setAttribute('cy',-10); }
+      }
+      requestAnimationFrame(frame);
+    }
+    function ping(){
+      radar.classList.remove('ping');
+      void radar.offsetWidth;
+      radar.classList.add('ping');
+    }
+
+    function renderM(p){
+      var W = 0.075, sum = 0, cur = -1;
+      dots.forEach(function(d,i){
+        var t0 = 0.05 + i * 0.075;
+        var q = (p - t0) / W;
+        if(q <= 0){
+          d.classList.remove('on');
+          lines[i].classList.remove('show','hot');
+          mSparked[i] = false;
+          return;
+        }
+        if(q < 1){
+          cur = i;
+          if(q > 0.45){
+            lines[i].classList.add('show','hot');
+            if(!mSparked[i]){ mSparked[i] = true; sparkM_along(lines[i], 500); }
+          }
+          if(q > 0.7){ sum += VALUES[i]; d.classList.add('on'); }
+        } else {
+          d.classList.add('on');
+          lines[i].classList.add('show');
+          lines[i].classList.remove('hot');
+          sum += VALUES[i];
         }
       });
-    }, {threshold:.55, rootMargin:'0px 0px -12% 0px'});
-    fmEls.forEach(function(el){ fio.observe(el); });
-  }
+      // индикатор этапа + текущая роль + радар при смене этапа вперёд
+      var stage = Math.max(0, Math.min(5, Math.floor((p - 0.05) / 0.075)));
+      if(p < 0.05) stage = 0;
+      if(stageEl){ stageEl.textContent = '0' + (stage + 1) + ' / 06'; }
+      if(cur >= 0){
+        if(cur !== mStage){
+          if(cur > mStage) ping();
+          mStage = cur;
+          roleName.textContent = ROLES[cur];
+          rolePrice.textContent = VALUES[cur].toLocaleString('ru-RU') + '\u00a0\u20bd / мес.';
+        }
+        roleBox.classList.add('on');
+      } else {
+        roleBox.classList.remove('on');
+        if(p < 0.05) mStage = -1;
+      }
+      // счётчик / итог
+      if(p > 0.52){
+        if(mShown !== -2){ mShown = -2; sumM.textContent = '\u2248 1 050 000 \u20bd'; capM.textContent = 'обнаружено 6 управленческих функций · стоимость сопоставимых специалистов / мес.'; }
+      } else if(sum !== mShown){
+        mShown = sum;
+        sumM.textContent = sum.toLocaleString('ru-RU') + '\u00a0\u20bd';
+        capM.textContent = 'общий счётчик';
+      }
+      mroot.classList.toggle('all', p > 0.52);
+      // фаза 2
+      var ph2 = p > 0.60;
+      mroot.classList.toggle('phase2', ph2);
+      if(ph2){ if(capM.textContent !== '6 потоков данных объединены'){ capM.textContent = '6 потоков данных объединены'; } }
+      else if(mShown === -2){ capM.textContent = 'обнаружено 6 управленческих функций · стоимость сопоставимых специалистов / мес.'; }
+      var hotIdx = -1;
+      malerts.forEach(function(a2,i){
+        var on = p > 0.66 + i * 0.045;
+        a2.classList.toggle('on', on);
+        if(on) hotIdx = i;
+      });
+      malerts.forEach(function(a2,i){ a2.classList.toggle('hot', i === hotIdx); });
+      if(ph2 && hotIdx > lastAlert){ lastAlert = hotIdx; sparkM_along(lines[Math.min(5,hotIdx+1)], 600); }
+      if(!ph2) lastAlert = -1;
+      mroot.classList.toggle('final', p > 0.86);
+    }
+
+    var QA_FM = (function(){ var m = location.search.match(/fm=([1-7])/); return m ? parseInt(m[1],10) : 0; })();
+    if(QA_FM){
+      document.documentElement.classList.add('qa-frame');
+      mtrack.style.height = 'auto';
+      pin.style.position = 'relative'; pin.style.height = '100vh';
+      renderM([0.02, 0.09, 0.27, 0.55, 0.62, 0.78, 0.95][QA_FM - 1]);
+      return;
+    }
+    function mprog(){
+      var total = mtrack.offsetHeight - window.innerHeight;
+      if(total <= 0) return 0;
+      return Math.min(1, Math.max(0, -funk.getBoundingClientRect().top / total));
+    }
+    function mtick(){ renderM(mprog()); requestAnimationFrame(mtick); }
+    requestAnimationFrame(mtick);
+  })();
 
   if(!mq.matches || reduced || QA_FLAT) return; // sticky-сцена только на десктопе с анимацией
 
