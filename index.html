@@ -431,6 +431,108 @@ footer a:hover{color:var(--muted)}
 .step--support.on::after{opacity:1}
 .steps-wrap{padding-bottom:34px}
 
+/* ---------- системный сканер стоимости и фактов ---------- */
+.funk{position:relative;background:radial-gradient(circle at 82% 18%, rgba(178,166,220,.08), transparent 26rem), var(--bg-deep);border-top:1px solid var(--line-soft)}
+.funk__track{height:190vh}
+.funk__pin{position:sticky;top:0;height:100dvh;display:flex;flex-direction:column;overflow:hidden;padding:calc(var(--nav-h) + 18px) var(--pad) 18px}
+.funk__head{max-width:1320px;margin:0 auto;width:100%}
+.funk__mode{display:flex;align-items:baseline;gap:22px;margin-top:6px;font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.funk__m1{color:var(--ink);transition:opacity .6s var(--ease-heavy)}
+.funk__m2{color:var(--pearl-2);opacity:0;transition:opacity .6s var(--ease-heavy)}
+.funk.phase2 .funk__m1{opacity:.3}
+.funk.phase2 .funk__m2{opacity:1}
+.funk__status{margin-left:auto;font-style:normal;color:var(--faint);letter-spacing:.16em}
+.funk__stage{position:relative;flex:1;max-width:1100px;margin:0 auto;width:100%;min-height:0;transition:opacity .7s var(--ease-heavy);
+  background-image:linear-gradient(rgba(246,245,248,.045) 1px, transparent 1px),linear-gradient(90deg, rgba(246,245,248,.045) 1px, transparent 1px);
+  background-size:64px 64px}
+.funk.final .funk__stage > .funk__wires,.funk.final .fnode,.funk.final .fcore,.funk.final .falerts{opacity:.16}
+.funk__wires{position:absolute;inset:0;width:100%;height:100%}
+.funk__wires path{stroke:transparent;stroke-width:1.1;fill:none;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke .5s,stroke-dashoffset .7s var(--ease-heavy)}
+.funk__wires path.show{stroke:rgba(246,245,248,.22);stroke-dashoffset:0}
+.funk__wires path.hot{stroke:rgba(207,201,234,.6);filter:drop-shadow(0 0 6px var(--violet-signal-glow))}
+.funk__wires path.done{stroke:rgba(246,245,248,.3)}
+.funk__spark{fill:#fff;filter:drop-shadow(0 0 8px var(--violet-signal-glow))}
+.fnode{position:absolute;font-family:var(--font-mono);letter-spacing:.06em;text-transform:uppercase;opacity:0;visibility:hidden;transition:opacity .5s,visibility .5s;display:flex;flex-direction:column;gap:4px;max-width:200px}
+.fnode u{text-decoration:none;font-size:10px;letter-spacing:.14em;color:var(--violet-signal);opacity:0;transition:opacity .4s;order:-1}
+.fnode.discover{opacity:1;visibility:visible}
+.fnode.discover u{opacity:1}
+.fnode.discover span{text-shadow:0 0 16px var(--violet-signal-glow)}
+.fnode.done{opacity:.5;visibility:visible}
+.funk.all .fnode{opacity:1}
+.fnode b{font-weight:400;font-size:11px;color:var(--faint);letter-spacing:.1em}
+.fnode span{font-size:15px;color:var(--ink);position:relative}
+.fnode .pB{display:none}
+.fnode em{font-style:normal;font-size:13px;color:var(--pearl-2);font-variant-numeric:tabular-nums;transition:opacity .5s}
+.fnode--r{text-align:right;align-items:flex-end}
+.funk.phase2 .fnode .pA{display:none}
+.funk.phase2 .fnode .pB{display:block}
+.funk.phase2 .fnode em{opacity:0}
+.funk.phase2 .fnode{opacity:.85}
+.fcore{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(340px,38%);text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px}
+.fcore::before{content:"";position:absolute;inset:-34px;border-radius:50%;background:radial-gradient(circle, rgba(183,166,255,.16) 0%, transparent 68%);pointer-events:none}
+.fcore__all{display:none;font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--pearl);text-shadow:0 0 16px var(--violet-signal-glow)}
+.funk.all .fcore__all{display:block}
+.funk.all .fcore__c1{display:none}
+.fcore__c1,.fcore__c2{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.fcore__c2{display:none;color:var(--pearl)}
+.funk.phase2 .fcore__c1{display:none}
+.funk.phase2 .fcore__c2{display:block;text-shadow:0 0 18px var(--violet-signal-glow)}
+.fcore__sum{font-family:var(--font-display);font-weight:800;font-size:clamp(30px,3.2vw,46px);line-height:.95;letter-spacing:-.03em;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.fcore__cap{font-family:var(--font-mono);font-size:12px;letter-spacing:.05em;color:var(--dim);max-width:280px;line-height:1.5}
+.falerts{position:absolute;left:50%;transform:translateX(-50%);bottom:2%;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;width:100%}
+.falert{display:flex;align-items:baseline;gap:10px;font-family:var(--font-mono);opacity:0;transform:translateY(10px);transition:opacity .5s var(--ease-heavy),transform .6s var(--ease-heavy)}
+.falert.on{opacity:1;transform:none}
+.falert b{font-weight:400;font-size:12px;letter-spacing:.1em;color:var(--violet-signal)}
+.falert span{font-size:13px;color:var(--muted)}
+.ffinal{position:absolute;left:50%;top:50%;transform:translate(-50%,-46%);width:min(760px,94%);text-align:center;opacity:0;transition:opacity .7s var(--ease-heavy),transform .8s var(--ease-heavy);pointer-events:none;padding:40px 20px}
+.ffinal::before{content:"";position:absolute;inset:-10% -18%;z-index:-1;background:radial-gradient(ellipse at 50% 50%, rgba(2,2,3,.94) 0%, rgba(2,2,3,.75) 55%, transparent 78%)}
+.funk.final .ffinal{opacity:1;transform:translate(-50%,-50%)}
+.ffinal h3{font-family:var(--font-display);font-size:clamp(26px,3vw,44px);font-weight:800;line-height:1.04;letter-spacing:-.025em;text-transform:uppercase;color:var(--ink)}
+.ffinal h3 span{color:var(--pearl);text-shadow:0 0 22px var(--violet-signal-glow)}
+.ffinal p{margin-top:16px;font-family:var(--font-mono);font-size:clamp(14px,1.15vw,16px);line-height:1.55;color:var(--muted)}
+.ffinal p + p{margin-top:8px}
+.ffinal__accent{font-family:var(--font-display) !important;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;font-size:clamp(15px,1.3vw,19px) !important;color:var(--ink) !important;line-height:1.35 !important}
+.ffinal small{display:block;margin-top:14px;font-family:var(--font-mono);font-size:13px;color:var(--dim)}
+.funk__method{max-width:1320px;margin:10px auto 0;width:100%;font-family:var(--font-mono);font-size:12.5px;line-height:1.5;color:var(--dim)}
+.funk-m{display:none}
+
+/* мобильный / статичный канал */
+@media (max-width: 767px), (prefers-reduced-motion: reduce){
+  .funk__track{display:none}
+  .funk-m{display:block;padding:clamp(64px,10vw,96px) var(--pad);max-width:620px;margin:0 auto}
+  .funk-m__chan{position:relative;margin-top:26px;padding-left:22px}
+  .funk-m__chan::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:1px;background:linear-gradient(var(--line),rgba(207,201,234,.5))}
+  .fmstep{position:relative;display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px solid var(--line-soft)}
+  .fmstep::before{content:"";position:absolute;left:-21px;top:50%;width:7px;height:7px;border-radius:50%;transform:translateY(-50%);background:var(--violet-signal);box-shadow:0 0 8px var(--violet-signal-glow);opacity:.4;transition:opacity .4s}
+  .fmstep{transition:opacity .5s}
+  .fmstep.dim{opacity:.55}
+  .fmstep b{font-family:var(--font-mono);font-weight:400;font-size:16px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink)}
+  .fmstep em{font-style:normal;font-family:var(--font-mono);font-size:16px;color:var(--pearl-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .fmtotal{margin-top:26px}
+  .fmtotal b{display:block;font-family:var(--font-display);font-weight:800;font-size:clamp(28px,8vw,36px);line-height:.95;letter-spacing:-.03em;color:var(--ink);font-variant-numeric:tabular-nums}
+  .fmtotal span{display:block;margin-top:10px;font-family:var(--font-mono);font-size:14px;line-height:1.5;color:var(--muted)}
+  .fmcore{margin-top:40px;text-align:center}
+  .fmcore__ring{width:118px;height:118px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;font-size:16px;color:var(--ink);border:1px solid rgba(183,166,255,.4);background:radial-gradient(circle, rgba(183,166,255,.22) 0%, transparent 70%);box-shadow:0 0 30px var(--violet-signal-glow)}
+  .fmcore p{margin-top:14px;font-family:var(--font-mono);font-size:14px;line-height:1.6;color:var(--muted)}
+  .fmalerts{margin-top:26px;display:grid;gap:12px}
+  .fmalerts div{display:flex;flex-direction:column;gap:3px;border-left:2px solid rgba(183,166,255,.5);padding-left:12px}
+  .fmalerts b{font-family:var(--font-mono);font-weight:400;font-size:13px;letter-spacing:.1em;color:var(--violet-signal)}
+  .fmalerts span{font-family:var(--font-mono);font-size:15px;color:var(--ink)}
+  .fmfinal{margin-top:44px}
+  .fmfinal h3{font-family:var(--font-display);font-size:clamp(22px,6.4vw,27px);font-weight:800;line-height:1.05;letter-spacing:-.02em;text-transform:uppercase;color:var(--ink)}
+  .fmfinal h3 span{color:var(--pearl);text-shadow:0 0 20px var(--violet-signal-glow)}
+  .fmfinal p{margin-top:14px;font-family:var(--font-mono);font-size:16px;line-height:1.55;color:var(--muted)}
+  .fm-accent{font-family:var(--font-display) !important;font-weight:700;text-transform:uppercase;font-size:15px !important;line-height:1.4 !important;color:var(--ink) !important}
+  .fmfinal small{display:block;margin-top:12px;font-family:var(--font-mono);font-size:14px;line-height:1.55;color:var(--dim)}
+  /* появление */
+  [data-fm]{opacity:0;transform:translateY(12px);transition:opacity .6s var(--ease-heavy),transform .7s var(--ease-heavy)}
+  [data-fm].on{opacity:1;transform:none}
+  [data-fm].on.fmstep::before{opacity:1}
+  @media (prefers-reduced-motion: reduce){
+    [data-fm]{opacity:1;transform:none;transition:none}
+  }
+}
+
 /* режим съёмки для проверки вёрстки: ?flat */
 .flat .hero{min-height:780px;height:780px}
 .flat .hero__spacer{min-height:40px}
@@ -446,6 +548,9 @@ footer a:hover{color:var(--muted)}
 .flat .asm__lbl,.flat .asm__core,.flat .asm__numwrap,.flat .dwarn,.flat .syslog li,.flat .step,.flat .launch,.flat .step--support{opacity:1 !important;transform:none !important}
 .flat .steps__fill{height:100% !important}
 .flat .chart .dot{opacity:1 !important}
+.flat .funk__track{display:none}
+.flat .funk-m{display:block;padding:56px var(--pad);max-width:620px;margin:0 auto}
+.flat .funk-m [data-fm]{opacity:1 !important;transform:none !important}
 .flat{scroll-behavior:auto !important}
 .qa-snap{scroll-behavior:auto !important}
 .qa-frame .hero,.qa-frame .nav{display:none}
@@ -601,6 +706,99 @@ footer a:hover{color:var(--muted)}
 </header>
 
 <main>
+
+<!-- ======== СИСТЕМНЫЙ СКАНЕР: СТОИМОСТЬ И ФАКТЫ ======== -->
+<section id="funkcii" class="funk" aria-label="Стоимость управленческих функций и анализ данных">
+  <div class="funk__track">
+    <div class="funk__pin">
+      <div class="funk__head">
+        <p class="eyebrow">Анализ управленческих функций</p>
+        <div class="funk__mode">
+          <span class="funk__m1">Режим 01 · Стоимость команды</span>
+          <span class="funk__m2">Режим 02 · AI-штаб собственника</span>
+          <em class="funk__status" data-fstatus>СКАНИРОВАНИЕ</em>
+        </div>
+      </div>
+
+      <div class="funk__stage" aria-hidden="true">
+        <svg class="funk__wires" viewBox="0 0 1000 520" preserveAspectRatio="none">
+          <path data-fw="0" d="M 168 96 C 320 120, 400 210, 468 248"/>
+          <path data-fw="1" d="M 148 260 C 300 260, 380 258, 460 258"/>
+          <path data-fw="2" d="M 168 424 C 320 400, 400 306, 468 268"/>
+          <path data-fw="3" d="M 832 96 C 680 120, 600 210, 532 248"/>
+          <path data-fw="4" d="M 852 260 C 700 260, 620 258, 540 258"/>
+          <path data-fw="5" d="M 832 424 C 680 400, 600 306, 532 268"/>
+          <circle class="funk__spark" data-fspark r="3.4" cx="-20" cy="-20"/>
+        </svg>
+
+        <div class="fnode" data-fn="0" style="left:3%;top:12%"><b>01</b><u>функция обнаружена</u><span class="pA">Закупки</span><span class="pB">Продажи</span><em>170 000 ₽</em></div>
+        <div class="fnode" data-fn="1" style="left:1.5%;top:46%"><b>02</b><u>функция обнаружена</u><span class="pA">Финансы</span><span class="pB">Остатки</span><em>200 000 ₽</em></div>
+        <div class="fnode" data-fn="2" style="left:3%;top:78%"><b>03</b><u>функция обнаружена</u><span class="pA">Продажи</span><span class="pB">Списания</span><em>250 000 ₽</em></div>
+        <div class="fnode fnode--r" data-fn="3" style="right:3%;top:12%"><b>04</b><u>функция обнаружена</u><span class="pA">Команда</span><span class="pB">Деньги</span><em>100 000 ₽</em></div>
+        <div class="fnode fnode--r" data-fn="4" style="right:1.5%;top:46%"><b>05</b><u>функция обнаружена</u><span class="pA">Операционка</span><span class="pB">Команда</span><em>150 000 ₽</em></div>
+        <div class="fnode fnode--r" data-fn="5" style="right:3%;top:78%"><b>06</b><u>функция обнаружена</u><span class="pA">Аналитика</span><span class="pB">Процессы</span><em>180 000 ₽</em></div>
+
+        <div class="fcore">
+          <span class="fcore__all">Обнаружено 6 управленческих функций</span>
+          <span class="fcore__c1">Управленческий контур</span>
+          <span class="fcore__c2">AI-штаб</span>
+          <div class="fcore__sum" data-fsum>0 ₽</div>
+          <small class="fcore__cap" data-fcap>рыночная стоимость функций</small>
+        </div>
+
+        <div class="falerts">
+          <div class="falert" data-fa="0"><b>Потери денег</b><span>обнаружены отклонения, требующие проверки</span></div>
+          <div class="falert" data-fa="1"><b>Рост списаний</b><span>остатки и списания выходят за обычные значения</span></div>
+          <div class="falert" data-fa="2"><b>План не выполняется</b><span>продажи отстают от установленного плана</span></div>
+          <div class="falert" data-fa="3"><b>Требуется внимание</b><span>в работе команды или процесса найдено отклонение</span></div>
+        </div>
+
+        <div class="ffinal">
+          <h3>Картина бизнеса.<br><span>Как есть.</span></h3>
+          <p>AI-помощники не&nbsp;приукрашивают результаты и&nbsp;не&nbsp;ищут оправданий. Они показывают отклонения, найденные в&nbsp;данных вашего бизнеса.</p>
+          <p class="ffinal__accent">Без догадок. Без приукрашивания.<br>Только факты из&nbsp;ваших данных.</p>
+          <small>Точность выводов зависит от&nbsp;полноты и&nbsp;корректности данных в&nbsp;учётной системе.</small>
+        </div>
+      </div>
+
+      <p class="funk__method">Ориентир рассчитан по&nbsp;актуальным предложениям работодателей в&nbsp;Москве. Указаны начисленные зарплаты до&nbsp;вычета налогов, без страховых взносов и&nbsp;других расходов работодателя.</p>
+    </div>
+  </div>
+
+  <!-- мобильный / статичный вертикальный канал -->
+  <div class="funk-m">
+    <p class="eyebrow">Анализ управленческих функций</p>
+    <div class="funk-m__chan">
+      <div class="fmstep" data-fm><b>01 · Закупки</b><em>+170 000 ₽</em></div>
+      <div class="fmstep" data-fm><b>02 · Финансы</b><em>+200 000 ₽</em></div>
+      <div class="fmstep" data-fm><b>03 · Продажи</b><em>+250 000 ₽</em></div>
+      <div class="fmstep" data-fm><b>04 · Команда</b><em>+100 000 ₽</em></div>
+      <div class="fmstep" data-fm><b>05 · Операционка</b><em>+150 000 ₽</em></div>
+      <div class="fmstep" data-fm><b>06 · Аналитика</b><em>+180 000 ₽</em></div>
+    </div>
+    <div class="fmtotal" data-fm>
+      <b>≈ 1 050 000 ₽ / мес.</b>
+      <span>Стоимость сопоставимых управленческих функций</span>
+    </div>
+    <div class="fmcore" data-fm>
+      <div class="fmcore__ring">AI-ШТАБ</div>
+      <p>Продажи · Остатки · Списания · Деньги · Команда · Процессы</p>
+    </div>
+    <div class="fmalerts" data-fm>
+      <div><b>Потери денег</b><span>обнаружены отклонения, требующие проверки</span></div>
+      <div><b>Рост списаний</b><span>остатки и списания выходят за обычные значения</span></div>
+      <div><b>План не выполняется</b><span>продажи отстают от установленного плана</span></div>
+      <div><b>Требуется внимание</b><span>в работе команды или процесса найдено отклонение</span></div>
+    </div>
+    <div class="fmfinal" data-fm>
+      <h3>Картина бизнеса.<br><span>Как есть.</span></h3>
+      <p>AI-помощники не&nbsp;приукрашивают результаты и&nbsp;не&nbsp;ищут оправданий. Они показывают отклонения, найденные в&nbsp;данных вашего бизнеса.</p>
+      <p class="fm-accent">Без догадок. Без приукрашивания. Только факты из&nbsp;ваших данных.</p>
+      <small>Точность выводов зависит от&nbsp;полноты и&nbsp;корректности данных в&nbsp;учётной системе.</small>
+      <small class="fm-method">Ориентир рассчитан по&nbsp;актуальным предложениям работодателей в&nbsp;Москве. Указаны начисленные зарплаты до&nbsp;вычета налогов, без страховых взносов и&nbsp;других расходов работодателя.</small>
+    </div>
+  </div>
+</section>
 
 <!-- ======== СЦЕНА: СИСТЕМА В СБОРЕ ======== -->
 <section id="sborka" class="sec sec--deep" aria-labelledby="sborka-h">
@@ -1204,6 +1402,129 @@ document.addEventListener('keydown', function(e){
     }
     requestAnimationFrame(tick);
   }
+  requestAnimationFrame(tick);
+})();
+
+// ---------- системный сканер: две фазы по прокрутке ----------
+(function(){
+  var funk = document.getElementById('funkcii');
+  if(!funk) return;
+  var mq = window.matchMedia('(min-width: 768px)');
+  var VALUES = [170000, 200000, 250000, 100000, 150000, 180000];
+
+  // мобильный/статичный канал — появление по одному разу
+  var fmEls = Array.prototype.slice.call(funk.querySelectorAll('[data-fm]'));
+  if(QA_FLAT || reduced || !('IntersectionObserver' in window)){
+    fmEls.forEach(function(el){ el.classList.add('on'); });
+  } else {
+    var steps = Array.prototype.slice.call(funk.querySelectorAll('.fmstep'));
+    var fio = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting) return;
+        e.target.classList.add('on'); fio.unobserve(e.target);
+        var idx = steps.indexOf(e.target);
+        if(idx > 0) steps.slice(0, idx).forEach(function(st){ st.classList.add('dim'); });
+        if(e.target.classList.contains('fmtotal')){
+          var bEl = e.target.querySelector('b');
+          var t0 = null, TOTAL = 1050000;
+          (function count(now){
+            if(t0 === null){ t0 = now; }
+            var k = Math.min(1, (now - t0)/1100);
+            bEl.textContent = '\u2248 ' + Math.round(TOTAL * k).toLocaleString('ru-RU') + '\u00a0\u20bd / мес.';
+            if(k < 1) requestAnimationFrame(count);
+          })(performance.now());
+        }
+      });
+    }, {threshold:.55, rootMargin:'0px 0px -12% 0px'});
+    fmEls.forEach(function(el){ fio.observe(el); });
+  }
+
+  if(!mq.matches || reduced || QA_FLAT) return; // sticky-сцена только на десктопе с анимацией
+
+  var track = funk.querySelector('.funk__track');
+  var nodes = Array.prototype.slice.call(funk.querySelectorAll('.fnode'));
+  var wires = Array.prototype.slice.call(funk.querySelectorAll('[data-fw]'));
+  var alerts = Array.prototype.slice.call(funk.querySelectorAll('.falert'));
+  var spark = funk.querySelector('[data-fspark]');
+  var sumEl = funk.querySelector('[data-fsum]');
+  var capEl = funk.querySelector('[data-fcap]');
+  var statusEl = funk.querySelector('[data-fstatus]');
+  var shownSum = -1, sparked = [], lastPhase = '';
+
+  function fmt(v){ return v.toLocaleString('ru-RU') + '\u00a0\u20bd'; }
+  function sparkAlong(path, ms){
+    var len = path.getTotalLength(); var t0 = null;
+    function frame(now){
+      if(t0 === null) t0 = now;
+      var k = Math.min(1, (now - t0)/ms);
+      var pt = path.getPointAtLength(len * (1 - k)); // от узла к ядру
+      spark.setAttribute('cx', pt.x); spark.setAttribute('cy', pt.y);
+      if(k < 1) requestAnimationFrame(frame);
+      else { spark.setAttribute('cx',-20); spark.setAttribute('cy',-20); }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function progress(){
+    var total = track.offsetHeight - window.innerHeight;
+    if(total <= 0) return 0;
+    return Math.min(1, Math.max(0, -funk.getBoundingClientRect().top / total));
+  }
+
+  var QA_F = (function(){ var m = location.search.match(/funk=([12345])/); return m ? parseInt(m[1],10) : 0; })();
+
+  function render(p){
+    // обнаружение ролей по одной: t_i..t_i+w
+    var W = 0.07, sum = 0, discovering = -1;
+    nodes.forEach(function(n,i){
+      var t0 = 0.04 + i * 0.075;
+      var q = (p - t0) / W;
+      if(q <= 0){
+        n.classList.remove('discover','done');
+        wires[i].classList.remove('show','hot','done');
+        if(sparked[i]) sparked[i] = false;
+        return;
+      }
+      if(q < 1){
+        discovering = i;
+        n.classList.add('discover'); n.classList.remove('done');
+        if(q > 0.45){
+          wires[i].classList.add('show');
+          if(!sparked[i]){ sparked[i] = true; sparkAlong(wires[i], 600); }
+        }
+        if(q > 0.6) sum += VALUES[i];
+      } else {
+        n.classList.remove('discover'); n.classList.add('done');
+        wires[i].classList.add('show');
+        sum += VALUES[i];
+      }
+    });
+    // итоговая подсветка всей системы
+    var all = p > 0.52 && p < 0.60;
+    funk.classList.toggle('all', all || p >= 0.60);
+    if(p > 0.52){
+      if(shownSum !== -2){ shownSum = -2; sumEl.textContent = '\u2248 1 050 000 \u20bd / МЕС.'; capEl.textContent = 'стоимость сопоставимых управленческих функций'; }
+    } else if(sum !== shownSum){
+      shownSum = sum; sumEl.textContent = fmt(sum);
+      capEl.textContent = 'рыночная стоимость функций';
+    }
+    // фаза 2
+    funk.classList.toggle('phase2', p > 0.60);
+    alerts.forEach(function(a2,i){ a2.classList.toggle('on', p > 0.66 + i * 0.045); });
+    funk.classList.toggle('final', p > 0.86);
+    var st = p < 0.52 ? 'СКАНИРОВАНИЕ' : p < 0.84 ? 'ДАННЫЕ ПОЛУЧЕНЫ' : 'АНАЛИЗ ЗАВЕРШЁН';
+    if(st !== lastPhase){ lastPhase = st; statusEl.textContent = st; }
+  }
+
+  if(QA_F){
+    document.documentElement.classList.add('qa-frame');
+    funk.querySelector('.funk__track').style.height = 'auto';
+    funk.querySelector('.funk__pin').style.position = 'relative';
+    render([0.02, 0.27, 0.55, 0.72, 0.95][QA_F - 1]);
+    return;
+  }
+
+  function tick(){ render(progress()); requestAnimationFrame(tick); }
   requestAnimationFrame(tick);
 })();
 
