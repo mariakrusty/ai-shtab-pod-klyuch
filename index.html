@@ -721,6 +721,32 @@ footer a:hover{color:var(--muted)}
   .lvl--3 .lvl__list{grid-template-columns:1fr}
   .lvl__list{font-size:15px}
 }
+/* окно «Задать вопрос Марии» — как на странице индивидуальной работы */
+.ask{position:fixed;inset:0;z-index:400;display:flex;align-items:center;justify-content:center;
+  background:rgba(4,6,10,.72);backdrop-filter:blur(10px);padding:20px}
+.ask[hidden]{display:none}
+.ask-card{background:linear-gradient(165deg,#131A26 0%,#0B111B 100%);border-radius:22px;
+  max-width:400px;width:100%;padding:clamp(26px,4vh,40px) clamp(22px,3vw,36px);
+  position:relative;color:#F4EFE6;box-shadow:inset 0 0 12px rgba(255,255,255,.1),0 30px 80px rgba(0,0,0,.5);
+  text-align:center;animation:askIn .35s cubic-bezier(.22,1,.36,1)}
+@keyframes askIn{from{opacity:0;transform:translateY(18px) scale(.97)}}
+.ask-card h3{font-family:var(--font-display);font-weight:500;font-size:clamp(17px,1.8vw,23px);margin:0 0 10px}
+.ask-card p{font-family:var(--font-mono);font-size:13px;line-height:1.6;color:rgba(244,239,230,.7);margin:0 0 22px}
+.ask-b{display:flex;justify-content:center;background:#B01B18;color:#FDF0D5;
+  border-radius:100px;padding:15px 24px;font-family:var(--font-display);font-weight:700;
+  text-transform:uppercase;font-size:11.5px;letter-spacing:.03em;text-decoration:none;transition:background .3s;margin-bottom:10px}
+.ask-b:hover{background:#8f1512}
+.ask-b.gh{background:transparent;border:1.5px solid rgba(244,239,230,.35);color:#F4EFE6}
+.ask-b.gh:hover{border-color:#B01B18;color:#E1483C;background:transparent}
+.ask-x{position:absolute;top:14px;right:16px;background:none;border:0;color:rgba(244,239,230,.6);
+  font-size:17px;cursor:pointer;transition:color .25s}
+.ask-x:hover{color:#F4EFE6}
+.shine{position:relative;overflow:hidden}
+.shine::after{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.35),transparent);
+  transform:skewX(-20deg);transition:left .6s ease}
+.shine:hover::after{left:130%}
+@media (prefers-reduced-motion:reduce){.ask-card{animation:none}}
 </style>
 </head>
 <body>
@@ -1378,6 +1404,17 @@ footer a:hover{color:var(--muted)}
   </nav>
 </footer>
 
+<div class="ask" id="ask" hidden role="dialog" aria-modal="true" aria-label="Написать Марии — выбор мессенджера">
+  <div class="ask-card">
+    <button class="ask-x" type="button" data-ask-close aria-label="Закрыть окно">✕</button>
+    <h3>Написать Марии</h3>
+    <p>Коротко: что за магазин и что болит. Отвечаю лично — выберите, где удобнее.</p>
+    <a class="ask-b shine" href="https://max.ru/u/f9LHodD0cOJ4o_DeRuYIjc1G-Nzh3Wxbq2xS1iP5vrVlFUV6ImW021ilazA" target="_blank" rel="noopener">Написать в MAX →</a>
+    <a class="ask-b gh" href="https://t.me/AIbyAndreeva_bot" target="_blank" rel="noopener">Написать в Telegram →</a>
+  </div>
+</div>
+</div>
+
 <script>
 // ---------- режим съёмки/проверки: ?flat ----------
 var QA_FLAT = location.search.indexOf('flat') > -1;
@@ -2018,6 +2055,21 @@ function onceInView(el, ratio, cb){
     }
   });
   hero.addEventListener('mouseleave', freeze);
+})();
+
+// ---------- окно «Написать Марии» (MAX / Telegram) — как на странице индивидуальной работы ----------
+(function(){
+  var ask = document.getElementById('ask');
+  if (!ask) return;
+  document.querySelectorAll('a.btn[href="https://t.me/AIbyAndreeva_bot"]').forEach(function(b){
+    b.addEventListener('click', function(e){ e.preventDefault(); ask.hidden = false; });
+  });
+  ask.addEventListener('click', function(e){
+    if (e.target === ask || e.target.hasAttribute('data-ask-close')) ask.hidden = true;
+  });
+  addEventListener('keydown', function(e){ if (e.key === 'Escape') ask.hidden = true; });
+  // QA: ?ask — открыть окно сразу
+  if(/[?&]ask/.test(location.search)) ask.hidden = false;
 })();
 
 // ---------- Яндекс.Метрика — только на боевом домене ----------
