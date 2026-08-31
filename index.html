@@ -479,9 +479,35 @@ footer a:hover{color:var(--muted)}
 .funk.phase2 .fcore__c2{display:block;text-shadow:0 0 18px var(--violet-signal-glow)}
 .fcore__sum{font-family:var(--font-display);font-weight:800;font-size:clamp(30px,3.2vw,46px);line-height:.95;letter-spacing:-.03em;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
 .fcore__cap{font-family:var(--font-mono);font-size:12px;letter-spacing:.05em;color:var(--dim);max-width:280px;line-height:1.5}
+.fcore__note{display:none;font-family:var(--font-mono);font-size:13px;line-height:1.55;color:var(--muted);max-width:340px}
+.funk.all .fcore__note{display:block}
+.funk.phase2 .fcore__note{display:none}
+.fcore__flow{display:none;font-family:var(--font-mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--pearl-2)}
+.fcore__mech{display:none;font-family:var(--font-mono);font-size:13px;line-height:1.55;color:var(--muted);max-width:340px}
+.funk.phase2 .fcore__flow,.funk.phase2 .fcore__mech{display:block}
+.funk.phase2 .fcore__sum,.funk.phase2 .fcore__cap{display:none}
+/* результат сканирования активной роли */
+.role-impact{position:absolute;left:50%;transform:translateX(-50%);bottom:3%;width:min(620px,92%);text-align:center;opacity:0;transition:opacity .4s var(--ease-heavy);pointer-events:none}
+.role-impact.go{opacity:1}
+.funk.phase2 .role-impact,.funk.all .role-impact{display:none}
+.role-impact small{display:block;font-family:var(--font-mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
+.role-impact b{position:relative;display:inline-block;font-family:var(--font-display);font-weight:800;font-size:clamp(24px,2.4vw,34px);line-height:1.08;letter-spacing:-.02em;text-transform:uppercase;color:var(--ink);clip-path:inset(0 100% 0 0);transition:clip-path .6s var(--ease-heavy) .2s;text-wrap:balance}
+.role-impact.go b{clip-path:inset(0 0 0 0)}
+.role-impact b::after{content:"";position:absolute;top:0;bottom:0;width:2px;background:var(--violet-signal);box-shadow:0 0 14px var(--violet-signal-glow);opacity:0;left:0}
+.role-impact.go b::after{animation:ri-sweep .8s var(--ease-heavy) .2s 1}
+@keyframes ri-sweep{0%{opacity:.9;left:0}100%{opacity:0;left:100%}}
+.role-impact i{display:block;width:0;height:1px;margin:12px auto 0;background:var(--pearl-2);box-shadow:0 0 8px var(--violet-signal-glow);transition:width .5s var(--ease-heavy) .7s}
+.role-impact.go i{width:120px}
+@media (prefers-reduced-motion: reduce){
+  .role-impact b{clip-path:none;transition:none}
+  .role-impact.go b::after{animation:none}
+  .role-impact i{transition:none}
+}
 .falerts{position:absolute;left:50%;transform:translateX(-50%);bottom:2%;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;width:100%}
 .falert{display:flex;align-items:baseline;gap:10px;font-family:var(--font-mono);opacity:0;transform:translateY(10px);transition:opacity .5s var(--ease-heavy),transform .6s var(--ease-heavy)}
-.falert.on{opacity:1;transform:none}
+.falert.on{opacity:.55;transform:none}
+.falert.on.hot{opacity:1}
+.falert.on.hot b{text-shadow:0 0 14px var(--violet-signal-glow)}
 .falert b{font-weight:400;font-size:12px;letter-spacing:.1em;color:var(--violet-signal)}
 .falert span{font-size:13px;color:var(--muted)}
 .ffinal{position:absolute;left:50%;top:50%;transform:translate(-50%,-46%);width:min(760px,94%);text-align:center;opacity:0;transition:opacity .7s var(--ease-heavy),transform .8s var(--ease-heavy);pointer-events:none;padding:40px 20px}
@@ -503,12 +529,12 @@ footer a:hover{color:var(--muted)}
   .fm__track{height:260vh}
   .fm__pin{position:sticky;top:0;height:100dvh;min-height:100svh;overflow:hidden;display:flex;flex-direction:column;padding:calc(var(--nav-h) + 14px) 20px 16px}
   .fm__mode{display:flex;align-items:baseline;gap:14px;margin-top:4px;font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
-  .fm__m1{color:var(--ink);transition:opacity .5s}
-  .fm__m2{color:var(--pearl-2);opacity:0;transition:opacity .5s}
-  .funk-m.phase2 .fm__m1{opacity:.3}
-  .funk-m.phase2 .fm__m2{opacity:1}
+  .fm__m1{color:var(--ink)}
+  .fm__m2{color:var(--pearl-2);display:none}
+  .funk-m.phase2 .fm__m1{display:none}
+  .funk-m.phase2 .fm__m2{display:inline}
   .fm__mode em{margin-left:auto;font-style:normal;color:var(--faint);font-variant-numeric:tabular-nums}
-  .fm__stage{position:relative;width:min(82vw,330px);aspect-ratio:1/1;margin:12px auto 0;flex-shrink:0;
+  .fm__stage{position:relative;width:min(70vw,265px);aspect-ratio:1/1;margin:10px auto 0;flex-shrink:0;
     background-image:linear-gradient(rgba(246,245,248,.05) 1px, transparent 1px),linear-gradient(90deg, rgba(246,245,248,.05) 1px, transparent 1px);
     background-size:44px 44px}
   .fm__orbit{position:absolute;inset:0;width:100%;height:100%}
@@ -523,11 +549,11 @@ footer a:hover{color:var(--muted)}
   .fdot i{position:absolute;font-style:normal;font-family:var(--font-mono);font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);white-space:nowrap;opacity:0;transition:opacity .5s}
   .funk-m.phase2 .fdot i{opacity:1}
   .fdot[data-fd="0"] i{left:50%;top:-22px;transform:translateX(-50%)}
-  .fdot[data-fd="1"] i{left:14px;top:-4px}
-  .fdot[data-fd="2"] i{left:14px;top:-4px}
+  .fdot[data-fd="1"] i{right:16px;top:-4px;text-align:right}
+  .fdot[data-fd="2"] i{right:16px;top:-4px;text-align:right}
   .fdot[data-fd="3"] i{left:50%;bottom:-22px;transform:translateX(-50%)}
-  .fdot[data-fd="4"] i{right:14px;top:-4px}
-  .fdot[data-fd="5"] i{right:14px;top:-4px}
+  .fdot[data-fd="4"] i{left:16px;top:-4px}
+  .fdot[data-fd="5"] i{left:16px;top:-4px}
   .fm__core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:72%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px}
   .fm__core::before{content:"";position:absolute;inset:-8%;border-radius:50%;background:radial-gradient(circle, rgba(183,166,255,.14) 0%, transparent 66%);pointer-events:none}
   .fm__radar{position:absolute;left:50%;top:50%;width:70px;height:70px;border-radius:50%;border:1px solid rgba(183,166,255,.55);transform:translate(-50%,-50%) scale(.4);opacity:0;pointer-events:none}
@@ -540,11 +566,19 @@ footer a:hover{color:var(--muted)}
   .fm__core b{font-family:var(--font-display);font-weight:800;font-size:clamp(30px,8.6vw,38px);line-height:.95;letter-spacing:-.03em;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap;transition:opacity .5s}
   .funk-m.phase2 .fm__core b{display:none}
   .fm__core small{font-family:var(--font-mono);font-size:12px;letter-spacing:.05em;color:var(--dim);line-height:1.45;max-width:220px}
-  .fm__role{margin:18px auto 0;text-align:center;display:flex;flex-direction:column;gap:6px;opacity:0;transform:translateY(12px);transition:opacity .45s var(--ease-heavy),transform .55s var(--ease-heavy);min-height:96px}
+  .fm__role{margin:12px auto 0;text-align:center;display:flex;flex-direction:column;gap:4px;opacity:0;transform:translateY(12px);transition:opacity .45s var(--ease-heavy),transform .55s var(--ease-heavy)}
   .fm__role.on{opacity:1;transform:none}
   .fm__role u{text-decoration:none;font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--violet-signal)}
-  .fm__role b{font-family:var(--font-display);font-weight:800;font-size:clamp(24px,7.4vw,30px);line-height:1;letter-spacing:-.02em;text-transform:uppercase;color:var(--ink)}
-  .fm__role em{font-style:normal;font-family:var(--font-mono);font-size:clamp(20px,5.8vw,24px);color:var(--pearl-2);font-variant-numeric:tabular-nums}
+  .fm__role b{font-family:var(--font-display);font-weight:800;font-size:clamp(24px,7vw,28px);line-height:1;letter-spacing:-.02em;text-transform:uppercase;color:var(--ink)}
+  .fm__role em{font-style:normal;font-family:var(--font-mono);font-size:clamp(20px,5.4vw,22px);color:var(--pearl-2);font-variant-numeric:tabular-nums}
+  .role-impact--m{position:static;transform:none;width:min(330px,88vw);margin:20px auto 0}
+  .role-impact--m b{font-size:clamp(20px,5.8vw,25px)}
+  .funk-m.phase2 .role-impact--m,.funk-m.all .role-impact--m{display:none}
+  .fm__note,.fm__mech{display:none;margin:14px auto 0;max-width:340px;text-align:center;font-family:var(--font-mono);font-size:14px;line-height:1.55;color:var(--muted)}
+  .funk-m.all .fm__note{display:block}
+  .funk-m.phase2 .fm__note{display:none}
+  .funk-m.phase2 .fm__mech{display:block}
+  .funk-m.final .fm__note,.funk-m.final .fm__mech{display:none}
   .fm__alerts{margin:6px auto 0;display:none;flex-direction:column;gap:10px;width:100%;max-width:340px}
   .funk-m.phase2 .fm__alerts{display:flex}
   .funk-m.final .fm__alerts{display:none}
@@ -562,7 +596,7 @@ footer a:hover{color:var(--muted)}
   .fm__final p{margin-top:12px;font-family:var(--font-mono);font-size:16px;line-height:1.5;color:var(--muted)}
   .fm__accent{font-family:var(--font-display) !important;font-weight:700;text-transform:uppercase;font-size:15px !important;line-height:1.4 !important;color:var(--ink) !important}
   .fm__final small{display:block;margin-top:12px;font-family:var(--font-mono);font-size:14px;line-height:1.5;color:var(--dim)}
-  .fm__method{margin-top:auto;font-family:var(--font-mono);font-size:14px;line-height:1.45;color:var(--dim)}
+  .fm__method{margin:22px auto 0;padding:0 20px 8px;max-width:560px;font-family:var(--font-mono);font-size:14px;line-height:1.5;color:var(--dim)}
 }
 
 /* reduced motion: статичная системная инфографика (мобайл и десктоп) */
@@ -617,6 +651,7 @@ footer a:hover{color:var(--muted)}
 .qa-frame .dive__pin{position:relative}
 .qa-frame4 .dive{display:none}
 .qa-snap .lvl *,.qa-snap .sig,.qa-snap .lvl{transition:none !important;animation:none !important}
+.qa-snap .fnode,.qa-snap .falert,.qa-snap .fdot,.qa-snap .fm__role,.qa-snap .role-impact,.qa-snap .role-impact *{transition:none !important;animation:none !important}
 
 /* ---------- адаптив ---------- */
 @media (max-width: 1023px){
@@ -790,12 +825,12 @@ footer a:hover{color:var(--muted)}
           <circle class="funk__spark" data-fspark r="3.4" cx="-20" cy="-20"/>
         </svg>
 
-        <div class="fnode" data-fn="0" style="left:3%;top:12%"><b>01</b><u>функция обнаружена</u><span class="pA">Закупки</span><span class="pB">Продажи</span><em>170 000 ₽</em></div>
-        <div class="fnode" data-fn="1" style="left:1.5%;top:46%"><b>02</b><u>функция обнаружена</u><span class="pA">Финансы</span><span class="pB">Остатки</span><em>200 000 ₽</em></div>
-        <div class="fnode" data-fn="2" style="left:3%;top:78%"><b>03</b><u>функция обнаружена</u><span class="pA">Продажи</span><span class="pB">Списания</span><em>250 000 ₽</em></div>
-        <div class="fnode fnode--r" data-fn="3" style="right:3%;top:12%"><b>04</b><u>функция обнаружена</u><span class="pA">Команда</span><span class="pB">Деньги</span><em>100 000 ₽</em></div>
-        <div class="fnode fnode--r" data-fn="4" style="right:1.5%;top:46%"><b>05</b><u>функция обнаружена</u><span class="pA">Операционка</span><span class="pB">Команда</span><em>150 000 ₽</em></div>
-        <div class="fnode fnode--r" data-fn="5" style="right:3%;top:78%"><b>06</b><u>функция обнаружена</u><span class="pA">Аналитика</span><span class="pB">Процессы</span><em>180 000 ₽</em></div>
+        <div class="fnode" aria-label="Показывает, что, когда и в каком объёме закупать с учётом продаж, остатков и списаний." data-fn="0" style="left:3%;top:12%"><b>01</b><u>функция обнаружена</u><span class="pA">Закупки</span><span class="pB">Продажи</span><em>170 000 ₽</em></div>
+        <div class="fnode" aria-label="Сводит прибыль, расходы, движение денег и предупреждает о риске кассового разрыва." data-fn="1" style="left:1.5%;top:46%"><b>02</b><u>функция обнаружена</u><span class="pA">Финансы</span><span class="pB">Остатки</span><em>200 000 ₽</em></div>
+        <div class="fnode" aria-label="Находит потерянные заявки, падение конверсии и возможности для повторных продаж." data-fn="2" style="left:3%;top:78%"><b>03</b><u>функция обнаружена</u><span class="pA">Продажи</span><span class="pB">Списания</span><em>250 000 ₽</em></div>
+        <div class="fnode fnode--r" aria-label="Сравнивает результаты смен и сотрудников и показывает, где требуется внимание руководителя." data-fn="3" style="right:3%;top:12%"><b>04</b><u>функция обнаружена</u><span class="pA">Команда</span><span class="pB">Деньги</span><em>100 000 ₽</em></div>
+        <div class="fnode fnode--r" aria-label="Собирает регламенты, чек-листы и контрольные точки ежедневной работы." data-fn="4" style="right:1.5%;top:46%"><b>05</b><u>функция обнаружена</u><span class="pA">Операционка</span><span class="pB">Команда</span><em>150 000 ₽</em></div>
+        <div class="fnode fnode--r" aria-label="Объединяет закупки, деньги, продажи, команду и процессы в одном отчёте собственника." data-fn="5" style="right:3%;top:78%"><b>06</b><u>функция обнаружена</u><span class="pA">Аналитика</span><span class="pB">Процессы</span><em>180 000 ₽</em></div>
 
         <div class="fcore">
           <span class="fcore__all">Обнаружено 6 управленческих функций</span>
@@ -803,19 +838,28 @@ footer a:hover{color:var(--muted)}
           <span class="fcore__c2">AI-штаб</span>
           <div class="fcore__sum" data-fsum>0 ₽</div>
           <small class="fcore__cap" data-fcap>рыночная стоимость функций</small>
+          <small class="fcore__note">Это не&nbsp;обещание автоматической экономии миллиона рублей. AI-штаб позволяет получить эти управленческие функции без создания отдельного отдела.</small>
+          <span class="fcore__flow">6 потоков данных объединены</span>
+          <small class="fcore__mech">Меньше решений вслепую, необоснованных закупок, растущих списаний и&nbsp;потерянных заявок.</small>
+        </div>
+
+        <div class="role-impact" data-impact aria-live="polite">
+          <small>Результат сканирования</small>
+          <b data-impact-text>ПЛАН ЗАКУПКИ ПО ДАННЫМ</b>
+          <i aria-hidden="true"></i>
         </div>
 
         <div class="falerts">
-          <div class="falert" data-fa="0"><b>Потери денег</b><span>обнаружены отклонения, требующие проверки</span></div>
-          <div class="falert" data-fa="1"><b>Рост списаний</b><span>остатки и списания выходят за обычные значения</span></div>
-          <div class="falert" data-fa="2"><b>План не выполняется</b><span>продажи отстают от установленного плана</span></div>
-          <div class="falert" data-fa="3"><b>Требуется внимание</b><span>в работе команды или процесса найдено отклонение</span></div>
+          <div class="falert" data-fa="0"><b>Риск списания</b></div>
+          <div class="falert" data-fa="1"><b>Избыток остатков</b></div>
+          <div class="falert" data-fa="2"><b>План продаж отстаёт</b></div>
+          <div class="falert" data-fa="3"><b>Риск кассового разрыва</b></div>
         </div>
 
         <div class="ffinal">
           <h3>Картина бизнеса.<br><span>Как есть.</span></h3>
-          <p>AI-помощники не&nbsp;приукрашивают результаты и&nbsp;не&nbsp;ищут оправданий. Они показывают отклонения, найденные в&nbsp;данных вашего бизнеса.</p>
-          <p class="ffinal__accent">Без догадок. Без приукрашивания.<br>Только факты из&nbsp;ваших данных.</p>
+          <p>AI-помощники анализируют данные без личной заинтересованности в&nbsp;результате и&nbsp;показывают собственнику найденные отклонения.</p>
+          <p class="ffinal__accent">Без догадок. Без приукрашивания.<br>Только факты из&nbsp;данных магазина.</p>
           <small>Точность выводов зависит от&nbsp;полноты и&nbsp;корректности данных в&nbsp;учётной системе.</small>
         </div>
       </div>
@@ -866,24 +910,31 @@ footer a:hover{color:var(--muted)}
           <b data-fmrole>Закупки</b>
           <em data-fmprice>170 000 ₽ / мес.</em>
         </div>
+        <div class="role-impact role-impact--m" data-impact-m aria-live="polite">
+          <small>Результат сканирования</small>
+          <b data-impact-text-m>ПЛАН ЗАКУПКИ ПО ДАННЫМ</b>
+          <i aria-hidden="true"></i>
+        </div>
+        <p class="fm__note">Это не&nbsp;обещание автоматической экономии миллиона рублей. AI-штаб позволяет получить эти управленческие функции без создания отдельного отдела.</p>
+        <p class="fm__mech">Меньше решений вслепую, необоснованных закупок, растущих списаний и&nbsp;потерянных заявок.</p>
 
         <div class="fm__alerts">
-          <div data-fma="0">Потери денег</div>
-          <div data-fma="1">Рост списаний</div>
-          <div data-fma="2">План не выполняется</div>
-          <div data-fma="3">Требуется внимание</div>
+          <div data-fma="0">Риск списания</div>
+          <div data-fma="1">Избыток остатков</div>
+          <div data-fma="2">План продаж отстаёт</div>
+          <div data-fma="3">Риск кассового разрыва</div>
         </div>
 
         <div class="fm__final">
           <h3>Картина бизнеса.<br><span>Как есть.</span></h3>
-          <p>AI-помощники не&nbsp;приукрашивают результаты. Они показывают отклонения, найденные в&nbsp;данных вашего бизнеса.</p>
-          <p class="fm__accent">Без догадок. Без приукрашивания.<br>Только факты из&nbsp;ваших данных.</p>
+          <p>AI-помощники анализируют данные без личной заинтересованности в&nbsp;результате и&nbsp;показывают собственнику найденные отклонения.</p>
+          <p class="fm__accent">Без догадок. Без приукрашивания.<br>Только факты из&nbsp;данных магазина.</p>
           <small>Точность выводов зависит от&nbsp;полноты и&nbsp;корректности данных в&nbsp;учётной системе.</small>
         </div>
 
-        <p class="fm__method">Ориентир рассчитан по&nbsp;актуальным предложениям работодателей в&nbsp;Москве. Указаны начисленные зарплаты до&nbsp;вычета налогов, без страховых взносов и&nbsp;других расходов работодателя.</p>
       </div>
     </div>
+    <p class="fm__method">Ориентир рассчитан по&nbsp;актуальным предложениям работодателей в&nbsp;Москве. Указаны начисленные зарплаты до&nbsp;вычета налогов, без страховых взносов и&nbsp;других расходов работодателя.</p>
   </div>
 </section>
 
@@ -991,58 +1042,6 @@ footer a:hover{color:var(--muted)}
   </div>
 </section>
 
-<!-- ======== 1. ФОРМАТ ======== -->
-<section id="format" class="sec sec--deep" aria-labelledby="format-h">
-  <div class="wrap">
-    <p class="eyebrow">01 · Формат</p>
-    <h2 class="h" id="format-h">Не курс и не набор промптов — готовая система, настроенная за вас.</h2>
-    <p class="sub">В&nbsp;групповой «AI-прокачке» участники постепенно создают и&nbsp;внедряют инструменты вместе с&nbsp;Марией. В&nbsp;индивидуальном формате всю техническую и&nbsp;подготовительную работу Мария выполняет за&nbsp;вас. <strong>Вы предоставляете доступы, отвечаете на&nbsp;вопросы о&nbsp;работе магазина и&nbsp;принимаете готовую систему.</strong> Разбираться в&nbsp;создании агентов, интеграциях и&nbsp;промптах не&nbsp;требуется.</p>
-    <div class="format__grid">
-      <div class="ftable">
-        <div class="ftable__head">AI-прокачка · групповой курс</div>
-        <div class="ftable__row">групповой формат</div>
-        <div class="ftable__row">девять месяцев внедрения</div>
-        <div class="ftable__row">инструменты участник собирает самостоятельно</div>
-        <div class="ftable__row">ежемесячная подписка</div>
-        <div class="ftable__row">поддержка автора и группы</div>
-      </div>
-      <div class="ftable ftable--hot">
-        <div class="ftable__head">AI-штаб под ключ · этот проект</div>
-        <div class="ftable__row">индивидуальный проект</div>
-        <div class="ftable__row">запуск от 7 до 15 рабочих дней</div>
-        <div class="ftable__row">настройку выполняет Мария</div>
-        <div class="ftable__row">система создаётся на данных конкретного магазина</div>
-        <div class="ftable__row">30 дней сопровождения после запуска</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======== 3. ЭТАПЫ ======== -->
-<section id="etapy" class="sec sec--panel" aria-labelledby="etapy-h">
-  <div class="wrap">
-    <div class="days__grid">
-      <div class="days__left">
-        <p class="eyebrow">03 · Внедрение</p>
-        <h2 class="h" id="etapy-h">От диагностики до&nbsp;работающей системы — от&nbsp;7 до&nbsp;15 рабочих дней.</h2>
-        <p class="sub">Срок считается после диагностики, получения доступов и&nbsp;проверки данных. Сложные или нестандартные интеграции могут потребовать больше времени.</p>
-      </div>
-      <div class="steps-wrap">
-      <div class="steps" data-steps>
-        <span class="steps__fill" data-fill aria-hidden="true"></span>
-        <div class="step"><span class="step__n">Этап 1</span><div><h3>Диагностика</h3><p>Мария изучает, как устроены продажи, учёт, закупки, движение денег и&nbsp;управленческая отчётность магазина.</p></div></div>
-        <div class="step"><span class="step__n">Этап 2</span><div><h3>Карта подключений</h3><p>Определяются источники данных, необходимые доступы, ограничения систем и&nbsp;состав будущего AI-штаба.</p></div></div>
-        <div class="step"><span class="step__n">Этап 3</span><div><h3>Настройка</h3><p>Создаются и&nbsp;настраиваются AI-помощники, подключения, отчёты и&nbsp;управленческие сценарии.</p></div></div>
-        <div class="step"><span class="step__n">Этап 4</span><div><h3>Проверка</h3><p>Инструменты тестируются на&nbsp;данных магазина. Проверяется корректность отчётов, предупреждений и&nbsp;рекомендаций.</p></div></div>
-        <div class="step"><span class="step__n">Этап 5</span><div><h3>Передача системы</h3><p>Собственник и&nbsp;один ключевой сотрудник проходят обучение работе с&nbsp;AI-штабом.</p></div></div>
-        <div class="launch" data-launch>Система запущена</div>
-        <div class="step step--support"><span class="step__n">Этап 6</span><div><h3>Сопровождение</h3><p>В&nbsp;течение 30&nbsp;дней после запуска Мария помогает исправить ошибки, уточнить сценарии и&nbsp;встроить систему в&nbsp;регулярную работу магазина.</p></div></div>
-      </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ======== 4. ДАШБОРД: УТРО ======== -->
 <section id="utro" class="sec sec--deep" aria-labelledby="utro-h">
   <div class="wrap">
@@ -1117,6 +1116,58 @@ footer a:hover{color:var(--muted)}
     </div>
     <p class="demo-note" style="margin-top:14px">Демонстрационный пример интерфейса. Не финансовый результат клиента.</p>
   </section>
+
+<!-- ======== 1. ФОРМАТ ======== -->
+<section id="format" class="sec sec--deep" aria-labelledby="format-h">
+  <div class="wrap">
+    <p class="eyebrow">01 · Формат</p>
+    <h2 class="h" id="format-h">Не курс и не набор промптов — готовая система, настроенная за вас.</h2>
+    <p class="sub">В&nbsp;групповой «AI-прокачке» участники постепенно создают и&nbsp;внедряют инструменты вместе с&nbsp;Марией. В&nbsp;индивидуальном формате всю техническую и&nbsp;подготовительную работу Мария выполняет за&nbsp;вас. <strong>Вы предоставляете доступы, отвечаете на&nbsp;вопросы о&nbsp;работе магазина и&nbsp;принимаете готовую систему.</strong> Разбираться в&nbsp;создании агентов, интеграциях и&nbsp;промптах не&nbsp;требуется.</p>
+    <div class="format__grid">
+      <div class="ftable">
+        <div class="ftable__head">AI-прокачка · групповой курс</div>
+        <div class="ftable__row">групповой формат</div>
+        <div class="ftable__row">девять месяцев внедрения</div>
+        <div class="ftable__row">инструменты участник собирает самостоятельно</div>
+        <div class="ftable__row">ежемесячная подписка</div>
+        <div class="ftable__row">поддержка автора и группы</div>
+      </div>
+      <div class="ftable ftable--hot">
+        <div class="ftable__head">AI-штаб под ключ · этот проект</div>
+        <div class="ftable__row">индивидуальный проект</div>
+        <div class="ftable__row">запуск от 7 до 15 рабочих дней</div>
+        <div class="ftable__row">настройку выполняет Мария</div>
+        <div class="ftable__row">система создаётся на данных конкретного магазина</div>
+        <div class="ftable__row">30 дней сопровождения после запуска</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 3. ЭТАПЫ ======== -->
+<section id="etapy" class="sec sec--panel" aria-labelledby="etapy-h">
+  <div class="wrap">
+    <div class="days__grid">
+      <div class="days__left">
+        <p class="eyebrow">03 · Внедрение</p>
+        <h2 class="h" id="etapy-h">От диагностики до&nbsp;работающей системы — от&nbsp;7 до&nbsp;15 рабочих дней.</h2>
+        <p class="sub">Срок считается после диагностики, получения доступов и&nbsp;проверки данных. Сложные или нестандартные интеграции могут потребовать больше времени.</p>
+      </div>
+      <div class="steps-wrap">
+      <div class="steps" data-steps>
+        <span class="steps__fill" data-fill aria-hidden="true"></span>
+        <div class="step"><span class="step__n">Этап 1</span><div><h3>Диагностика</h3><p>Мария изучает, как устроены продажи, учёт, закупки, движение денег и&nbsp;управленческая отчётность магазина.</p></div></div>
+        <div class="step"><span class="step__n">Этап 2</span><div><h3>Карта подключений</h3><p>Определяются источники данных, необходимые доступы, ограничения систем и&nbsp;состав будущего AI-штаба.</p></div></div>
+        <div class="step"><span class="step__n">Этап 3</span><div><h3>Настройка</h3><p>Создаются и&nbsp;настраиваются AI-помощники, подключения, отчёты и&nbsp;управленческие сценарии.</p></div></div>
+        <div class="step"><span class="step__n">Этап 4</span><div><h3>Проверка</h3><p>Инструменты тестируются на&nbsp;данных магазина. Проверяется корректность отчётов, предупреждений и&nbsp;рекомендаций.</p></div></div>
+        <div class="step"><span class="step__n">Этап 5</span><div><h3>Передача системы</h3><p>Собственник и&nbsp;один ключевой сотрудник проходят обучение работе с&nbsp;AI-штабом.</p></div></div>
+        <div class="launch" data-launch>Система запущена</div>
+        <div class="step step--support"><span class="step__n">Этап 6</span><div><h3>Сопровождение</h3><p>В&nbsp;течение 30&nbsp;дней после запуска Мария помогает исправить ошибки, уточнить сценарии и&nbsp;встроить систему в&nbsp;регулярную работу магазина.</p></div></div>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ======== 5. ЧТО ПОТРЕБУЕТСЯ ======== -->
 <section id="uchastie" class="sec sec--panel" aria-labelledby="uchastie-h">
@@ -1499,6 +1550,20 @@ document.addEventListener('keydown', function(e){
   var mq = window.matchMedia('(min-width: 768px)');
   var VALUES = [170000, 200000, 250000, 100000, 150000, 180000];
 
+  var IMPACTS = ['ПЛАН ЗАКУПКИ ПО ДАННЫМ','ПРИБЫЛЬ И РИСКИ ВИДНЫ','ПОТЕРИ В ПРОДАЖАХ ВИДНЫ','РЕЗУЛЬТАТ КОМАНДЫ ВИДЕН','СБОИ В ПРОЦЕССАХ ВИДНЫ','ОДИН ОТЧЁТ СОБСТВЕННИКА'];
+  function armImpact(rootSel, textSel, i, ref){
+    var root = funk.querySelector(rootSel);
+    if(!root) return;
+    if(i < 0){ if(ref.v !== -1){ root.classList.remove('go'); ref.v = -1; } return; }
+    if(i === ref.v) return;
+    ref.v = i;
+    root.classList.remove('go');
+    funk.querySelector(textSel).textContent = IMPACTS[i];
+    void root.offsetWidth;
+    root.classList.add('go');
+  }
+  var impPrev = {v:-1}, impPrevM = {v:-1};
+
   // ── мобильный сканер: sticky-сцена с одиночными событиями обнаружения ──
   var ROLES = ['Закупки','Финансы','Продажи','Команда','Операционка','Аналитика'];
   (function(){
@@ -1568,6 +1633,7 @@ document.addEventListener('keydown', function(e){
       var stage = Math.max(0, Math.min(5, Math.floor((p - 0.05) / 0.075)));
       if(p < 0.05) stage = 0;
       if(stageEl){ stageEl.textContent = '0' + (stage + 1) + ' / 06'; }
+      armImpact('[data-impact-m]', '[data-impact-text-m]', cur, impPrevM);
       if(cur >= 0){
         if(cur !== mStage){
           if(cur > mStage) ping();
@@ -1582,7 +1648,7 @@ document.addEventListener('keydown', function(e){
       }
       // счётчик / итог
       if(p > 0.52){
-        if(mShown !== -2){ mShown = -2; sumM.textContent = '\u2248 1 050 000 \u20bd'; capM.textContent = 'обнаружено 6 управленческих функций · стоимость сопоставимых специалистов / мес.'; }
+        if(mShown !== -2){ mShown = -2; sumM.textContent = '\u2248 1 050 000 \u20bd'; capM.textContent = 'рыночная стоимость сопоставимых управленческих функций / мес.'; }
       } else if(sum !== mShown){
         mShown = sum;
         sumM.textContent = sum.toLocaleString('ru-RU') + '\u00a0\u20bd';
@@ -1593,7 +1659,7 @@ document.addEventListener('keydown', function(e){
       var ph2 = p > 0.60;
       mroot.classList.toggle('phase2', ph2);
       if(ph2){ if(capM.textContent !== '6 потоков данных объединены'){ capM.textContent = '6 потоков данных объединены'; } }
-      else if(mShown === -2){ capM.textContent = 'обнаружено 6 управленческих функций · стоимость сопоставимых специалистов / мес.'; }
+      else if(mShown === -2){ capM.textContent = 'рыночная стоимость сопоставимых управленческих функций / мес.'; }
       var hotIdx = -1;
       malerts.forEach(function(a2,i){
         var on = p > 0.66 + i * 0.045;
@@ -1655,7 +1721,7 @@ document.addEventListener('keydown', function(e){
     return Math.min(1, Math.max(0, -funk.getBoundingClientRect().top / total));
   }
 
-  var QA_F = (function(){ var m = location.search.match(/funk=([12345])/); return m ? parseInt(m[1],10) : 0; })();
+  var QA_F = (function(){ var m = location.search.match(/funk=([1-8])/); return m ? parseInt(m[1],10) : 0; })();
 
   function render(p){
     // обнаружение ролей по одной: t_i..t_i+w
@@ -1683,28 +1749,31 @@ document.addEventListener('keydown', function(e){
         sum += VALUES[i];
       }
     });
+    armImpact('[data-impact]', '[data-impact-text]', discovering, impPrev);
     // итоговая подсветка всей системы
     var all = p > 0.52 && p < 0.60;
     funk.classList.toggle('all', all || p >= 0.60);
     if(p > 0.52){
-      if(shownSum !== -2){ shownSum = -2; sumEl.textContent = '\u2248 1 050 000 \u20bd / МЕС.'; capEl.textContent = 'стоимость сопоставимых управленческих функций'; }
+      if(shownSum !== -2){ shownSum = -2; sumEl.textContent = '\u2248 1 050 000 \u20bd / МЕС.'; capEl.textContent = 'рыночная стоимость сопоставимых управленческих функций'; }
     } else if(sum !== shownSum){
       shownSum = sum; sumEl.textContent = fmt(sum);
       capEl.textContent = 'рыночная стоимость функций';
     }
     // фаза 2
     funk.classList.toggle('phase2', p > 0.60);
-    alerts.forEach(function(a2,i){ a2.classList.toggle('on', p > 0.66 + i * 0.045); });
+    var hotD = -1;
+    alerts.forEach(function(a2,i){ var on = p > 0.66 + i * 0.045; a2.classList.toggle('on', on); if(on) hotD = i; });
+    alerts.forEach(function(a2,i){ a2.classList.toggle('hot', i === hotD); });
     funk.classList.toggle('final', p > 0.86);
     var st = p < 0.52 ? 'СКАНИРОВАНИЕ' : p < 0.84 ? 'ДАННЫЕ ПОЛУЧЕНЫ' : 'АНАЛИЗ ЗАВЕРШЁН';
     if(st !== lastPhase){ lastPhase = st; statusEl.textContent = st; }
   }
 
   if(QA_F){
-    document.documentElement.classList.add('qa-frame');
+    document.documentElement.classList.add('qa-frame','qa-snap');
     funk.querySelector('.funk__track').style.height = 'auto';
     funk.querySelector('.funk__pin').style.position = 'relative';
-    render([0.02, 0.27, 0.55, 0.72, 0.95][QA_F - 1]);
+    render([0.02, 0.10, 0.255, 0.46, 0.55, 0.63, 0.80, 0.95][QA_F - 1]);
     return;
   }
 
